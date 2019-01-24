@@ -200,9 +200,67 @@ void Task5()
 				A[i][j] = 0;
 			}
 		}
+		count = 0;
 	}
 
 	printf("\n__________________________________\n\n");
+
+	for (int i = 0; i < ind; i++)
+	{
+		for (int j = 0; j < ind; j++)
+
+		{
+			printf("%d\t", A[i][j]);
+		}
+		printf("\n\n");
+	}
+	
+}
+
+
+void Task6()
+{
+	SetConsoleTextAttribute(hConsole, 10);
+	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
+	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 5;
+	int A[ind][ind] = { 0 }, i, j, count = 0, min=100;
+
+	for (int i = 0; i < ind; i++)
+	{
+		for (int j = 0; j < ind; j++)
+
+		{
+			A[i][j] = 1 + rand() % 9;
+
+			printf("%d\t", A[i][j]);
+		}
+
+		printf("\n\n");
+
+	}
+
+	for (int i = 0; i < ind; i++)
+	{
+		for (int j = 0; j < ind; j++)
+
+		{
+			if (A[i][j] < min)
+			{
+				min = A[i][j];
+			}
+		}
+
+		if (A[i][i] == min)
+		{
+			for (j = 0; j < ind; j++)
+				A[i][j] = 0;
+		}
+		min = 100;
+	}
+
+	printf("\n\n-----------------------------------\n\n");
 
 	for (int i = 0; i < ind; i++)
 	{
@@ -215,16 +273,6 @@ void Task5()
 		printf("\n\n");
 
 	}
-	
-}
-
-
-void Task6()
-{
-	SetConsoleTextAttribute(hConsole, 10);
-	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
-	SetConsoleTextAttribute(hConsole, 7);
-
 	
 }
 
@@ -245,7 +293,36 @@ void Task8()
 	printf("\n--------------------------------------------------------------------------\n\nTask8\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	
+	int const ind = 5;
+	int A[ind][ind] = { 0 }, i, j, count = 0, s=5;
+
+	for (int i = 0; i < ind; i++)
+	{
+		for (int j = 0; j < ind; j++)
+
+		{
+			A[i][j] = 1 + rand() % 9;
+
+			printf("%d\t", A[i][j]);
+		}
+
+		printf("\n\n");
+
+	}
+
+	printf("\n\n--------------------------------------------\n\n");
+
+	for (int i = 0; i < ind; i++)
+	{
+		for (int j = 0; j < ind; j++)
+
+		{
+			if (A[i][j] == s) count++;
+		}	
+	}
+
+printf("\n %d", count);
+
 
 }
 
