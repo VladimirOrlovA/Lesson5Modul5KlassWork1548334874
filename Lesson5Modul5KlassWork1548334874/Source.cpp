@@ -44,7 +44,7 @@ void Task2()
 	printf("\n--------------------------------------------------------------------------\n\nTask2\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	const int ind = 3;
+	/*const int ind = 3;
 	int a[ind][ind], b[ind][ind],  i, j, max=0, s=0;
 
 	for (i = 0; i < ind; i++)
@@ -61,28 +61,17 @@ void Task2()
 	
 
 	for (i = 0; i < ind; i++)
-		s += a[i][j];
-			
-			
+	{
+		for (j = 0; j < ind; j++)
+		{
+			s += a[i][j];
 		}
+
+		b[i][j]=s
+
+
 		printf("\n");
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -154,40 +143,7 @@ void Task3()
 	printf("\n--------------------------------------------------------------------------\n\nTask3\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 9;
-
-	int arr[ind][ind] = { 0 }, i, j, x1 = 0, x2 = 0, y;
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			arr[i][j] = 10 + rand() % 15;
-
-			printf("%d \t", arr[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n Изменили разрядность элементов \n\n");
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			x1 = arr[i][j] / 10;
-			x2 = arr[i][j] % 10;
-			y = x2 * 10 + x1;
-
-			arr[i][j] = y;
-
-			printf("%d \t", arr[i][j]);
-		}
-		printf("\n");
-	}
-
-
-
+	
 }
 
 
@@ -197,35 +153,7 @@ void Task4()
 	printf("\n--------------------------------------------------------------------------\n\nTask4\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 9;
-	int arr[ind][ind], i, j, dec;
-
-	printf("\n\nМатрица %d x %d со случайными числами в  8-ой системе\n\n", ind, ind);
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			dec = 11 + rand() % 53;										// генерим числа от 8 до 77 (чтобы в дес системе не вых на 3 разряд)
-			arr[i][j] = ((dec / 8) * 10) + (dec - ((dec / 8) * 8));		// преобраз dec в oct и записываем в массив
-			printf("%2d   ", arr[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n\nПеревод исходной матрицы с элементами в 8-ой системе в 10-ую систему \n\n");
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			arr[i][j] = (arr[i][j] / 10) * 8 + (arr[i][j] % 10);
-
-			printf("%2d   ", arr[i][j]);
-
-		}
-		printf("\n");
-	}
+	
 
 }
 
@@ -237,7 +165,7 @@ void Task5()
 	SetConsoleTextAttribute(hConsole, 7);
 
 	int const ind = 5;
-	int A[ind][ind] = { 0 }, count = 0, B[ind][ind] = { 0 };
+	int A[ind][ind] = { 0 }, count = 0;
 
 	for (int i = 0; i < ind; i++)
 	{
@@ -253,73 +181,41 @@ void Task5()
 
 	}
 
-	for (int k = 0; k < ind; k++)
-	{
-		for (int p = 0; p < ind; p++)
-		{
-			count = 0;
-
-			for (int i = 0; i < ind; i++)
-			{
-				for (int j = 0; j < ind; j++)
-				{
-					if (A[k][p] == A[i][j])// && A[k][p]!=0
-
-						count++;
-				}
-			}
-
-			if (count - 1 >= 2)
-
-			{
-				for (int i = 0; i < ind; i++)
-				{
-					for (int j = 0; j < ind; j++)
-					{
-						if (A[k][p] == A[i][j])
-
-							B[i][j] = -1;
-					}
-				}
-			}
-		}
-	}
-
-	for (int k = 0; k < ind; k++)
-	{
-
-		for (int p = 0; p < ind; p++)
-
-		{
-			if (B[k][p] == -1)
-
-				A[k][p] = 0;
-		}
-
-	}
-
-	printf("\n--------------------------------\n\n");
 
 	for (int i = 0; i < ind; i++)
-
 	{
+		for (int j = 0; j < ind-1; j++)
 
+		{
+			if (A[i][j] == A[i][j + 1])
+			{
+				count++;
+			}
+		}
+
+		if (count == 0)
+		{
+			for (int j = 0; j < ind; j++)
+			{
+				A[i][j] = 0;
+			}
+		}
+	}
+
+	printf("\n__________________________________\n\n");
+
+	for (int i = 0; i < ind; i++)
+	{
 		for (int j = 0; j < ind; j++)
 
 		{
-			printf("%d\t", B[i][j]);
+			printf("%d\t", A[i][j]);
 		}
-
-
-
-
-
 
 		printf("\n\n");
 
 	}
-
-
+	
 }
 
 
@@ -329,36 +225,7 @@ void Task6()
 	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 6;
-	int arr[ind][ind], i, j, count = 0;
-
-	printf("\n\nМассив %d х %d из случайных чисел : \n\n", ind, ind);
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			arr[i][j] = 1 + rand() % 9;
-			printf("%d  ", arr[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n\nВывод индексов тех элементов, значения которых больше, \nчем у стоящих справа от него => \n\n");
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			if (arr[i][j] > arr[i + 1][j + 1])
-			{
-				printf("A[%d][%d]   ", i, j);
-				count++;
-			}
-		}
-		printf("\n");
-	}
-	printf("\nКоличество таких чисел = %d \n\n", count);
+	
 }
 
 
@@ -368,36 +235,7 @@ void Task7()
 	printf("\n--------------------------------------------------------------------------\n\nTask7\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 6;
-	int arr[ind][ind], i, j, count = 0;
-
-	printf("\n\nМассив %d х %d из случайных чисел : \n\n", ind, ind);
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			arr[i][j] = 1 + rand() % 9;
-			printf("%d  ", arr[i][j]);
-		}
-		printf("\n");
-	}
-
-	printf("\n\n_____________________________________ \n\n");
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; j < ind; j++)
-		{
-			if (arr[i][j] > arr[i + 1][j + 1])
-			{
-				printf("A[%d][%d]   ", i, j);
-				count++;
-			}
-		}
-		printf("\n");
-	}
-	printf("\nКоличество таких чисел = %d \n\n", count);
+	
 }
 
 
@@ -407,18 +245,7 @@ void Task8()
 	printf("\n--------------------------------------------------------------------------\n\nTask8\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 5;
-	int arr[ind][ind], i, j, d = 3;
-
-	for (i = 0; i < ind; i++)
-	{
-		for (j = 0; i < ind; i++)
-		{
-			if (i == 0 && j == 0) arr[i][j] = 3;
-			else arr[i][j] = 0;
-		}
-
-	}
+	
 
 }
 
